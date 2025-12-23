@@ -30,6 +30,7 @@ uname -a
 Semua commands yang dijalankan:
 Penjelasan masing-masing:
 ```
+2.
 mkdir  ~/security_lab/scans/results  (buat direktori)
 touch report.txt, targets.txt, notes.md (buat file)
 nano report.txt, targets.txt, notes.md (buat isi file)
@@ -41,6 +42,11 @@ cat repor_backup.txt (buat liat isi file nya)
 head -l lab_targets.txt   (Menampilkan baris awal file
 tail -f targets.txt (Menampilkan baris akhir file)
 wc -l lab_targets.txt (Menghitung (Word Count) isi file)
+
+3.
+4.
+5.
+6.
 ```
 **installation_log.txt**
 Daftar tools & version:
