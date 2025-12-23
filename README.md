@@ -227,5 +227,7 @@ To check for new updates run: sudo apt update
 **screenshots**
 
 
+1.
+![image alt](https://github.com/dowsxc/PR/blob/main/1.jpeg)
 
 
