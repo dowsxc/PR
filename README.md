@@ -150,6 +150,8 @@ Status (success/failed + notes) succes
 
 **network_info.txt**
 IP address, netmask, gateway
+
+```
 ip a 
 
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
@@ -157,17 +159,20 @@ ip a
        valid_lft 85259sec preferred_lft 85259sec
     inet6 fe80::a00:27ff:fe00:53e4/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
-       
+ ```      
 netmask 
-/24 → artinya 255.255.255.0
+```/24 → artinya 255.255.255.0```
 
 gateway
-
+```
 Gateway: 10.0.2.2
 (Ini IP router/gateway default di mode NAT VirtualBox).
+```
 
-SSH enabled status 
-● ssh.service - OpenBSD Secure Shell server
+-SSH enabled status 
+
+ ```
+ ssh.service - OpenBSD Secure Shell server
    Loaded: loaded (/usr/lib/systemd/system/ssh.service; enabled; preset: disabled)
    Active: active (running) since Mon 2025-12-22 15:10:59 WIB; 4min 16s ago
      Docs: man:sshd(8)
@@ -178,7 +183,8 @@ SSH enabled status
       CPU: 44ms
    CGroup: /system.slice/ssh.service
            └─625 "sshd: /usr/sbin/sshd -D [listener] 0 of 
-SSH connection test hasil
+```
+-SSH connection test hasil
 
 ```
 kali@sanggalab:~ $ ssh nix@192.168.0.100
