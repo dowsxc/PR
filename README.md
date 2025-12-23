@@ -131,16 +131,93 @@ sudo ufw show added
 ```
 **installation_log.txt**
 Daftar tools & version:
-Tanggal installation:
-Status (success/failed + notes)
+
+nmap :7.98
+
+wireshark:4.6.0
+
+tcpdump:4.99.5
+
+aircrack-ng:1.7
+
+burpsuite :2025.11.4-43766
+
+Tanggal installation:21 dec
+
+Status (success/failed + notes) succes
 
 
 
 **network_info.txt**
 IP address, netmask, gateway
-SSH enabled status
+ip a 
+
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 85259sec preferred_lft 85259sec
+    inet6 fe80::a00:27ff:fe00:53e4/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+       
+netmask 
+/24 → artinya 255.255.255.0
+
+gateway
+
+Gateway: 10.0.2.2
+(Ini IP router/gateway default di mode NAT VirtualBox).
+
+SSH enabled status 
+● ssh.service - OpenBSD Secure Shell server
+   Loaded: loaded (/usr/lib/systemd/system/ssh.service; enabled; preset: disabled)
+   Active: active (running) since Mon 2025-12-22 15:10:59 WIB; 4min 16s ago
+     Docs: man:sshd(8)
+          man:sshd_config(5)
+ Main PID: 625 (sshd)
+    Tasks: 1 (limit: 5053)
+   Memory: 2.2M (peak: 3.2M)
+      CPU: 44ms
+   CGroup: /system.slice/ssh.service
+           └─625 "sshd: /usr/sbin/sshd -D [listener] 0 of 
 SSH connection test hasil
 
+```
+kali@sanggalab:~ $ ssh nix@192.168.0.100
+The authenticity of host '192.168.0.100 (192.168.0.100)' can't be established.
+ED25519 key fingerprint is SHA256:9YYS6pPdpS3bYP5DJT0Q79ZlOpb7bAe9mi1MJY4.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.0.100' (ED25519) to the list of known hosts.
+nix@192.168.0.100's password: 
+
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-161-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:         https://ubuntu.com/pro
+
+System information as of Mon Dec  1 11:29:31 PM UTC 2025
+
+  System load:  3.92                   Temperature:         43.0 °C
+  Usage of /:   31.5% of 97.87GB       Processes:          158
+  Memory usage: 8%                    Users logged in:    0
+  Swap usage:   0%                    IPv4 address for enp1s0: 192.168.0.100
+
+Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+11 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+```
 **screenshots**
 
 
