@@ -227,7 +227,7 @@ To check for new updates run: sudo apt update
 **screenshots**
 
 
-1.
+1. uname_output.png dan hostname_change.png
 ![image alt](https://github.com/dowsxc/PR/blob/main/1.jpeg)
 
-
+2.
