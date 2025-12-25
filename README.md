@@ -7,9 +7,9 @@ NIM:1002250035
 
 TOOLS:CLI
 
-KENDALA:Saya kurang paham yang no 3
+KENDALA:ssh
 
-SOLUSI: saya minta bantuan ai grok
+SOLUSI: network pilih bridged adapter jangan pilih nat
 
 **Perubahan_hostname.txt**
 
@@ -30,7 +30,7 @@ uname -a
 Semua commands yang dijalankan:
 Penjelasan masing-masing:
 ```
-2.
+2.DIRECTORY & FILE MANAGEMENT
 mkdir  ~/security_lab/scans/results  (buat direktori)
 touch report.txt, targets.txt, notes.md (buat file)
 nano report.txt, targets.txt, notes.md (buat isi file)
@@ -43,7 +43,7 @@ head -l lab_targets.txt   (Menampilkan baris awal file
 tail -f targets.txt (Menampilkan baris akhir file)
 wc -l lab_targets.txt (Menghitung (Word Count) isi file)
 
-3.
+3.TEXT PROCESSING & SEARCHING
 grep "security" lab_targets.txt
 grep -i "Security" lab_targets.txt     # ignore case
 grep -v "closed" lab_targets.txt       # exclude baris dengan "closed"
@@ -128,6 +128,35 @@ sudo ufw status
 sudo ufw enable
 sudo ufw allow 22/tcp
 sudo ufw show added
+
+7.DISTRO COMPARISON & UNDERSTANDING
+Distro               Package Manager           Init System  SSH Service Name     Firewall            
+──────────────────── ───────────────────────── ──────────── ──────────────────── ────────────────────
+Ubuntu/Debian        apt (deb)                 systemd      ssh                  ufw / iptables      
+Kali Linux           apt (deb)                 systemd      ssh                  ufw / iptables      
+RedHat (RHEL)        dnf/yum (rpm)             systemd      sshd                 firewalld           
+CentOS               dnf/yum (rpm)             systemd      sshd                 firewalld
+
+Install package (contoh install package vim)
+Debian-based: sudo apt update && sudo apt install vim
+RHEL-based: sudo dnf install vim (atau sudo yum install vim di versi lama)
+
+Start SSH service
+Debian-based: sudo systemctl start ssh
+RHEL-based: sudo systemctl start sshd
+
+Check service status (contoh SSH)
+Debian-based: sudo systemctl status ssh
+RHEL-based: sudo systemctl status sshd
+
+Add firewall rule (contoh allow port 22/SSH)
+Debian-based (ufw): sudo ufw allow ssh lalu sudo ufw reload
+RHEL-based (firewalld): sudo firewall-cmd --permanent --add-service=ssh lalu sudo firewall-cmd --reload
+
+View system info
+Debian-based: uname -a atau cat /etc/os-release atau lsb_release -a
+RHEL-based: uname -a atau cat /etc/os-release atau hostnamectl
+
 ```
 **installation_log.txt**
 Daftar tools & version:
@@ -186,42 +215,28 @@ Gateway: 10.0.2.2
 ```
 -SSH connection test hasil
 
+izin saya connect nya make ubuntu bukan windows
+
 ```
-kali@sanggalab:~ $ ssh nix@192.168.0.100
-The authenticity of host '192.168.0.100 (192.168.0.100)' can't be established.
-ED25519 key fingerprint is SHA256:9YYS6pPdpS3bYP5DJT0Q79ZlOpb7bAe9mi1MJY4.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '192.168.0.100' (ED25519) to the list of known hosts.
-nix@192.168.0.100's password: 
+java@nix:~$ ssh kali@192.168.1.4
+kali@192.168.1.4's password: 
+Linux sanggalab 6.17.10+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.17.10-1kali1 (2025-12-08) x86_64
 
-Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.0-161-generic x86_64)
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:         https://ubuntu.com/pro
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Dec 25 09:57:11 2025 from 192.168.1.10
+┏━(Message from Kali developers)
+┃
+┃ This is a minimal installation of Kali Linux, you likely
+┃ want to install supplementary tools. Learn how:
+┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/
+┃
+┗━(Run: “touch ~/.hushlogin” to hide this message)
 
-System information as of Mon Dec  1 11:29:31 PM UTC 2025
-
-  System load:  3.92                   Temperature:         43.0 °C
-  Usage of /:   31.5% of 97.87GB       Processes:          158
-  Memory usage: 8%                    Users logged in:    0
-  Swap usage:   0%                    IPv4 address for enp1s0: 192.168.0.100
-
-Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
-just raised the bar for easy, resilient and secure K8s cluster deployment.
-
-https://ubuntu.com/engage/secure-kubernetes-at-the-edge
-
-Expanded Security Maintenance for Applications is not enabled.
-
-0 updates can be applied immediately.
-
-11 additional security updates can be applied with ESM Apps.
-Learn more about enabling ESM Apps service at https://ubuntu.com/esm
-
-The list of available updates is more than a week old.
-To check for new updates run: sudo apt update
 
 ```
 **screenshots**
