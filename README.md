@@ -130,12 +130,7 @@ sudo ufw allow 22/tcp
 sudo ufw show added
 
 7.DISTRO COMPARISON & UNDERSTANDING
-Distro               Package Manager           Init System  SSH Service Name     Firewall            
-──────────────────── ───────────────────────── ──────────── ──────────────────── ────────────────────
-Ubuntu/Debian        apt (deb)                 systemd      ssh                  ufw / iptables      
-Kali Linux           apt (deb)                 systemd      ssh                  ufw / iptables      
-RedHat (RHEL)        dnf/yum (rpm)             systemd      sshd                 firewalld           
-CentOS               dnf/yum (rpm)             systemd      sshd                 firewalld
+
 
 Install package (contoh install package vim)
 Debian-based: sudo apt update && sudo apt install vim
@@ -197,6 +192,51 @@ gateway
 Gateway: 10.0.2.2
 (Ini IP router/gateway default di mode NAT VirtualBox).
 ```
+
+**ssh_config_explanation.txt**
+
+
+Parameter Utama yang Sudah Dikonfigurasi
+
+Port 22
+SSH server mendengarkan di port standar 22.
+Belum diubah. Untuk keamanan tambahan, banyak admin mengubahnya ke port lain (misal 2222) agar mengurangi serangan otomatis.
+
+PermitRootLogin prohibit-password
+User root tidak boleh login langsung menggunakan password.
+Tapi masih boleh login jika pakai SSH key.
+Ini setting yang cukup aman (lebih baik daripada yes). Rekomendasi terbaik: ubah jadi no supaya root sama sekali tidak bisa login langsung via SSH.
+
+PasswordAuthentication yes
+Login menggunakan password masih diizinkan.
+Karena ini yes, user biasa (termasuk root, kalau PermitRootLogin allow) bisa login pakai password.
+Kalau sudah pakai SSH key dan ingin lebih aman, ubah jadi no.
+
+PubkeyAuthentication yes
+Autentikasi menggunakan SSH key diizinkan (dan aktif).
+Ini bagus dan aman. Pastikan kamu sudah setup public key di ~/.ssh/authorized_keys.
+
+MaxAuthTries 6
+Maksimal 6 kali percobaan login (password atau key) dalam satu sesi koneksi sebelum koneksi diputus.
+Cukup standar. Untuk lebih ketat, bisa diturunkan jadi 3 atau 4 untuk mengurangi risiko brute-force.
+
+MaxSessions 10
+Maksimal 10 sesi SSH simultan dari satu koneksi.
+Mencegah satu user membuka terlalu banyak session sekaligus (berguna untuk kontrol resource).
+
+
+**equiv_commands.md**
+
+Distro               Package Manager           Init System  SSH Service Name     Firewall            
+──────────────────── ───────────────────────── ──────────── ──────────────────── ────────────────────
+Ubuntu/Debian        apt (deb)                 systemd      ssh                  ufw / iptables      
+Kali Linux           apt (deb)                 systemd      ssh                  ufw / iptables      
+RedHat (RHEL)        dnf/yum (rpm)             systemd      sshd                 firewalld           
+CentOS               dnf/yum (rpm)             systemd      sshd                 firewalld
+
+
+
+
 
 -SSH enabled status 
 
